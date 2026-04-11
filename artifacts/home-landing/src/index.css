@@ -157,6 +157,36 @@
 .delay-700 { animation-delay: 700ms; }
 .delay-1000 { animation-delay: 1000ms; }
 
+.botanical-float {
+  animation: botanicalFloat 12s ease-in-out infinite;
+}
+
+.botanical-float-slow {
+  animation: botanicalFloat 16s ease-in-out infinite;
+}
+
+.botanical-float-reverse {
+  animation: botanicalFloatReverse 14s ease-in-out infinite;
+}
+
+@keyframes botanicalFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(2deg);
+  }
+}
+
+@keyframes botanicalFloatReverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(2deg);
+  }
+  50% {
+    transform: translate3d(0, 10px, 0) rotate(-2deg);
+  }
+}
+
 /* Subtle noise overlay for extra wabi-sabi feel */
 .noise-overlay {
   position: fixed;

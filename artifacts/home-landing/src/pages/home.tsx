@@ -68,6 +68,99 @@ const thichNhatHanhQuotes = [
   "Breathing in, I calm body and mind. Breathing out, I smile.",
 ];
 
+function DecorativeBotanicals() {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
+      <svg
+        className="botanical-float absolute bottom-8 left-6 h-36 w-36 text-primary/24 sm:bottom-14 sm:left-16 sm:h-48 sm:w-48"
+        viewBox="0 0 220 220"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M108 171c-17-29-15-60 0-91 15 31 17 62 0 91Z"
+          fill="currentColor"
+          opacity="0.34"
+        />
+        <path
+          d="M73 166c-2-36 12-62 37-82 4 36-7 64-37 82Z"
+          fill="currentColor"
+          opacity="0.24"
+        />
+        <path
+          d="M143 166c2-36-12-62-37-82-4 36 7 64 37 82Z"
+          fill="currentColor"
+          opacity="0.24"
+        />
+        <path
+          d="M45 153c18-29 42-42 73-42-15 30-38 46-73 42Z"
+          fill="currentColor"
+          opacity="0.18"
+        />
+        <path
+          d="M173 153c-18-29-42-42-73-42 15 30 38 46 73 42Z"
+          fill="currentColor"
+          opacity="0.18"
+        />
+        <path
+          d="M55 177c34 18 74 18 108 0"
+          stroke="currentColor"
+          strokeWidth="5"
+          strokeLinecap="round"
+          opacity="0.28"
+        />
+      </svg>
+
+      <svg
+        className="botanical-float-slow absolute right-8 top-12 h-40 w-40 text-[hsl(87_18%_38%_/_0.23)] sm:right-24 sm:top-20 sm:h-56 sm:w-56"
+        viewBox="0 0 220 220"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M70 181c13-48 37-91 84-127"
+          stroke="currentColor"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M119 83c-24-19-51-20-80-4 26 15 53 17 80 4Z"
+          fill="currentColor"
+        />
+        <path
+          d="M144 58c-7-30 2-55 27-75 9 29 2 55-27 75Z"
+          fill="currentColor"
+          opacity="0.78"
+        />
+        <path
+          d="M98 122c-29-10-56-4-79 19 31 7 57 1 79-19Z"
+          fill="currentColor"
+          opacity="0.82"
+        />
+        <path
+          d="M126 102c17-24 42-34 73-28-15 26-38 36-73 28Z"
+          fill="currentColor"
+          opacity="0.72"
+        />
+      </svg>
+
+      <svg
+        className="botanical-float-reverse absolute bottom-16 right-2 hidden h-44 w-44 text-[hsl(37_27%_38%_/_0.17)] md:block lg:right-16"
+        viewBox="0 0 220 220"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M50 190c8-48 11-91 4-132" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+        <path d="M94 190c2-58 12-101 34-145" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+        <path d="M142 190c-4-48 2-88 18-120" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+        <path d="M54 74c-17 23-17 45 1 67 18-25 18-47-1-67Z" fill="currentColor" opacity="0.75" />
+        <path d="M130 48c-26 20-34 46-23 78 28-22 36-48 23-78Z" fill="currentColor" opacity="0.62" />
+        <path d="M158 76c-19 18-24 39-14 64 20-20 25-41 14-64Z" fill="currentColor" opacity="0.56" />
+      </svg>
+    </div>
+  );
+}
+
 export default function Home() {
   const [time, setTime] = useState(new Date());
   const [quoteIndex, setQuoteIndex] = useState(0);
@@ -111,6 +204,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_34%,rgba(255,253,245,0.04),rgba(245,238,221,0.52)_44%,rgba(229,219,197,0.78)_100%)]" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/58 to-background/18" />
       <div className="absolute inset-0 bg-gradient-to-b from-background/16 via-transparent to-background/72" />
+      <DecorativeBotanicals />
       <div className="noise-overlay" />
       <div className="absolute top-1/2 left-[34%] -translate-x-1/2 -translate-y-1/2 w-[620px] h-[620px] bg-[rgba(255,250,235,0.28)] rounded-full blur-[110px] pointer-events-none" />
 
@@ -143,9 +237,9 @@ export default function Home() {
               href={link.url}
               target={link.url !== "#" ? "_blank" : "_self"}
               rel="noreferrer"
-              className={`group relative flex items-center gap-4 p-5 rounded-lg border border-border/70 bg-card/72 shadow-[0_22px_70px_rgba(83,70,48,0.13)] backdrop-blur-md hover:bg-card/92 hover:border-primary/35 hover:-translate-y-0.5 transition-all duration-500 fade-in-up ${link.delay}`}
+              className={`group relative flex items-center gap-4 rounded-[1.75rem] border border-border/70 bg-card/72 p-5 shadow-[0_22px_70px_rgba(83,70,48,0.13)] backdrop-blur-md hover:-translate-y-0.5 hover:border-primary/35 hover:bg-card/92 transition-all duration-500 fade-in-up ${link.delay}`}
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors duration-500">
+              <div className="flex-shrink-0 w-10 h-10 rounded-2xl bg-secondary flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors duration-500">
                 {link.icon}
               </div>
               <div className="flex flex-col flex-grow">
