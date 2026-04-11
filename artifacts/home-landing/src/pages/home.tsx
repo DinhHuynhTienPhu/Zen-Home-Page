@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight, Youtube, MonitorPlay, Film, BookOpen, Music, Edit3 } from "lucide-react";
-import zenBackground from "@assets/image_2026-04-11_114929125_1775882969139.png";
+import zenBackground from "@assets/image_1775884017478.png";
 
 interface LinkItem {
   title: string;
@@ -77,20 +77,21 @@ export default function Home() {
   return (
     <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center relative overflow-hidden bg-background py-20 px-6 sm:px-12">
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-55 scale-[1.03]"
+        className="absolute inset-0 bg-cover bg-center opacity-80 scale-[1.02]"
         style={{ backgroundImage: `url(${zenBackground})` }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(236,222,190,0.22),rgba(20,31,23,0.74)_42%,rgba(13,20,15,0.94)_100%)]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-background/35 to-background/80" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_34%,rgba(255,253,245,0.04),rgba(245,238,221,0.52)_44%,rgba(229,219,197,0.78)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/58 to-background/18" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/16 via-transparent to-background/72" />
       <div className="noise-overlay" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-[34%] -translate-x-1/2 -translate-y-1/2 w-[620px] h-[620px] bg-[rgba(255,250,235,0.28)] rounded-full blur-[110px] pointer-events-none" />
 
       <main className="w-full max-w-2xl mx-auto relative z-10 flex flex-col gap-16">
         <header className="flex flex-col gap-4 text-center sm:text-left fade-in-up">
           <p className="font-mono text-sm tracking-widest text-muted-foreground uppercase">
             {dateString} • {timeString}
           </p>
-          <h1 className="font-serif text-5xl sm:text-6xl text-foreground font-light tracking-tight">
+          <h1 className="font-serif text-5xl sm:text-6xl text-foreground font-light tracking-tight drop-shadow-[0_2px_20px_rgba(255,255,255,0.6)]">
             Trở về nhà.
           </h1>
           <p className="font-sans text-muted-foreground text-lg max-w-md mx-auto sm:mx-0 font-light leading-relaxed mt-2">
@@ -105,9 +106,9 @@ export default function Home() {
               href={link.url}
               target={link.url !== "#" ? "_blank" : "_self"}
               rel="noreferrer"
-              className={`group relative flex items-center gap-4 p-5 rounded-lg border border-border/60 bg-card/55 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-md hover:bg-card/85 hover:border-foreground/18 transition-all duration-500 fade-in-up ${link.delay}`}
+              className={`group relative flex items-center gap-4 p-5 rounded-lg border border-border/70 bg-card/72 shadow-[0_22px_70px_rgba(83,70,48,0.13)] backdrop-blur-md hover:bg-card/92 hover:border-primary/35 hover:-translate-y-0.5 transition-all duration-500 fade-in-up ${link.delay}`}
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors duration-500">
                 {link.icon}
               </div>
               <div className="flex flex-col flex-grow">
@@ -118,7 +119,7 @@ export default function Home() {
                   {link.description}
                 </span>
               </div>
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-500 text-muted-foreground">
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-500 text-primary">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </a>
