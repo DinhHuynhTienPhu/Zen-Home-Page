@@ -55,12 +55,40 @@ const links: LinkItem[] = [
   },
 ];
 
+const thichNhatHanhQuotes = [
+  "Walk as if you are kissing the Earth with your feet.",
+  "Smile, breathe and go slowly.",
+  "Because you are alive, everything is possible.",
+  "Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor.",
+  "Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy.",
+  "To be beautiful means to be yourself. You don’t need to be accepted by others. You need to accept yourself.",
+  "The present moment is filled with joy and happiness. If you are attentive, you will see it.",
+  "Our own life has to be our message.",
+  "Drink your tea slowly and reverently, as if it is the axis on which the world earth revolves.",
+  "Breathing in, I calm body and mind. Breathing out, I smile.",
+];
+
 export default function Home() {
   const [time, setTime] = useState(new Date());
+  const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quoteVisible, setQuoteVisible] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const quoteTimer = setInterval(() => {
+      setQuoteVisible(false);
+
+      window.setTimeout(() => {
+        setQuoteIndex((current) => (current + 1) % thichNhatHanhQuotes.length);
+        setQuoteVisible(true);
+      }, 650);
+    }, 6500);
+
+    return () => clearInterval(quoteTimer);
   }, []);
 
   const timeString = time.toLocaleTimeString("vi-VN", {
@@ -94,9 +122,18 @@ export default function Home() {
           <h1 className="font-serif text-5xl sm:text-6xl text-foreground font-light tracking-tight drop-shadow-[0_2px_20px_rgba(255,255,255,0.6)]">
             Trở về nhà.
           </h1>
-          <p className="font-sans text-muted-foreground text-lg max-w-md mx-auto sm:mx-0 font-light leading-relaxed mt-2">
-            Một góc nhỏ bình yên. Hít thở sâu và chậm lại.
-          </p>
+          <div
+            className={`max-w-xl mx-auto sm:mx-0 mt-2 transition-all duration-700 ${
+              quoteVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
+            <p className="font-serif italic text-xl sm:text-2xl text-muted-foreground leading-relaxed">
+              “{thichNhatHanhQuotes[quoteIndex]}”
+            </p>
+            <p className="mt-3 font-sans text-xs tracking-[0.22em] uppercase text-muted-foreground/75">
+              Thích Nhất Hạnh
+            </p>
+          </div>
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
