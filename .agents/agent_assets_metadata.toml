@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "9bNUTAlBOcT2HW2h4ICl8"
+uri = "file://artifacts/home-landing/public/texture.png"
+type = "image"
+title = "wabi sabi textured background"
