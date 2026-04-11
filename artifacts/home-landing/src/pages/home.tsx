@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight, Youtube, MonitorPlay, Film, BookOpen, Music, Edit3 } from "lucide-react";
+import zenBackground from "@assets/image_2026-04-11_114929125_1775882969139.png";
 
 interface LinkItem {
   title: string;
@@ -74,15 +75,17 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center relative overflow-hidden bg-background/80 py-20 px-6 sm:px-12">
+    <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center relative overflow-hidden bg-background py-20 px-6 sm:px-12">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-55 scale-[1.03]"
+        style={{ backgroundImage: `url(${zenBackground})` }}
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(236,222,190,0.22),rgba(20,31,23,0.74)_42%,rgba(13,20,15,0.94)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-background/35 to-background/80" />
       <div className="noise-overlay" />
-      
-      {/* Subtle glowing ambient light behind content */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <main className="w-full max-w-2xl mx-auto relative z-10 flex flex-col gap-16">
-        
-        {/* Header Section */}
         <header className="flex flex-col gap-4 text-center sm:text-left fade-in-up">
           <p className="font-mono text-sm tracking-widest text-muted-foreground uppercase">
             {dateString} • {timeString}
@@ -95,7 +98,6 @@ export default function Home() {
           </p>
         </header>
 
-        {/* Links Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {links.map((link, i) => (
             <a
@@ -103,7 +105,7 @@ export default function Home() {
               href={link.url}
               target={link.url !== "#" ? "_blank" : "_self"}
               rel="noreferrer"
-              className={`group relative flex items-center gap-4 p-5 rounded-lg border border-border/50 bg-card/40 backdrop-blur-sm hover:bg-card/80 hover:border-border transition-all duration-500 fade-in-up ${link.delay}`}
+              className={`group relative flex items-center gap-4 p-5 rounded-lg border border-border/60 bg-card/55 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-md hover:bg-card/85 hover:border-foreground/18 transition-all duration-500 fade-in-up ${link.delay}`}
             >
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:text-foreground transition-colors duration-500">
                 {link.icon}
@@ -123,7 +125,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Footer */}
         <footer className="mt-8 text-center sm:text-left fade-in-up delay-1000">
           <p className="font-serif italic text-muted-foreground text-sm">
             "Sự hoàn mỹ nằm trong những điều không hoàn hảo."
