@@ -40,8 +40,8 @@ const links: LinkItem[] = [
   },
   {
     title: "Góc Đọc Sách",
-    url: "#",
-    description: "Không gian tĩnh lặng",
+    url: "https://shadowlibraries.github.io/DirectDownloads/AnnasArchive/",
+    description: "Anna’s Archive",
     icon: <BookOpen className="w-5 h-5" strokeWidth={1.5} />,
     delay: "delay-500",
   },

@@ -6,7 +6,7 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 
 Current primary user-facing artifact:
 
-- `artifacts/home-landing` — React/Vite personal landing page at `/`, built as a calm Vietnamese “digital home” portal with favorite-site shortcuts, a bright wabi-sabi/zen stone background, rounded soft link buttons, botanical accents, an embedded meditation/relax YouTube playlist section, and a light warm neutral visual style.
+- `artifacts/home-landing` — React/Vite personal landing page at `/`, built as a calm Vietnamese “digital home” portal with favorite-site shortcuts including Anna’s Archive, a bright wabi-sabi/zen stone background, rounded soft link buttons, botanical accents, an embedded meditation/relax YouTube playlist section, and a light warm neutral visual style.
 
 ## Stack
 
