@@ -10,6 +10,12 @@ interface LinkItem {
   delay: string;
 }
 
+const meditationPlaylistUrl =
+  "https://www.youtube.com/watch?v=1lXbTn372wI&list=RD1lXbTn372wI&start_radio=1&t=2087s";
+
+const meditationEmbedUrl =
+  "https://www.youtube.com/embed/1lXbTn372wI?start=2087&list=RD1lXbTn372wI";
+
 const links: LinkItem[] = [
   {
     title: "Freemediaheckyeah",
@@ -41,8 +47,8 @@ const links: LinkItem[] = [
   },
   {
     title: "Danh Sách Phát",
-    url: "#",
-    description: "Giai điệu thư giãn",
+    url: "#playlist",
+    description: "Nhạc thiền relax",
     icon: <Music className="w-5 h-5" strokeWidth={1.5} />,
     delay: "delay-[600ms]",
   },
@@ -235,8 +241,8 @@ export default function Home() {
             <a
               key={i}
               href={link.url}
-              target={link.url !== "#" ? "_blank" : "_self"}
-              rel="noreferrer"
+              target={link.url.startsWith("#") ? undefined : "_blank"}
+              rel={link.url.startsWith("#") ? undefined : "noreferrer"}
               className={`group relative flex items-center gap-4 rounded-[1.75rem] border border-border/70 bg-card/72 p-5 shadow-[0_22px_70px_rgba(83,70,48,0.13)] backdrop-blur-md hover:-translate-y-0.5 hover:border-primary/35 hover:bg-card/92 transition-all duration-500 fade-in-up ${link.delay}`}
             >
               <div className="flex-shrink-0 w-10 h-10 rounded-2xl bg-secondary flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors duration-500">
@@ -256,6 +262,44 @@ export default function Home() {
             </a>
           ))}
         </div>
+
+        <section
+          id="playlist"
+          className="fade-in-up delay-700 scroll-mt-8 rounded-[2rem] border border-border/70 bg-card/70 p-4 shadow-[0_26px_90px_rgba(83,70,48,0.14)] backdrop-blur-md sm:p-5"
+        >
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-sans text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                Danh sách phát
+              </p>
+              <h2 className="mt-2 font-serif text-2xl font-light text-foreground">
+                Nhạc thiền relax
+              </h2>
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
+                Một góc âm thanh nhẹ để thở chậm, đọc quote, hoặc để căn phòng yên hơn.
+              </p>
+            </div>
+            <a
+              href={meditationPlaylistUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 self-start rounded-full border border-primary/20 bg-background/50 px-4 py-2 text-sm font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-background/80 sm:self-auto"
+            >
+              Mở trên YouTube
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="overflow-hidden rounded-[1.55rem] border border-border/70 bg-background/45 shadow-inner">
+            <iframe
+              className="aspect-video w-full"
+              src={meditationEmbedUrl}
+              title="Danh sách phát nhạc thiền relax"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </section>
 
         <footer className="mt-8 text-center sm:text-left fade-in-up delay-1000">
           <p className="font-serif italic text-muted-foreground text-sm">
