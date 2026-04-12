@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight, Youtube, MonitorPlay, Film, BookOpen, Music, Edit3 } from "lucide-react";
+import GoodNewsSection from "@/components/good-news-section";
 import zenBackground from "@assets/image_1775884017478.png";
 
 interface LinkItem {
@@ -263,9 +264,11 @@ export default function Home() {
           ))}
         </div>
 
+        <GoodNewsSection />
+
         <section
           id="playlist"
-          className="fade-in-up delay-700 scroll-mt-8 rounded-[2rem] border border-border/70 bg-card/70 p-4 shadow-[0_26px_90px_rgba(83,70,48,0.14)] backdrop-blur-md sm:p-5"
+          className="fade-in-up delay-1000 scroll-mt-8 rounded-[2rem] border border-border/70 bg-card/70 p-4 shadow-[0_26px_90px_rgba(83,70,48,0.14)] backdrop-blur-md sm:p-5"
         >
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
