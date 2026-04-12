@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, Newspaper } from "lucide-react";
 
 type GoodNewsArticle = {
@@ -9,16 +9,16 @@ type GoodNewsArticle = {
   source?: string;
 };
 
-type NewsDataArticle = {
-  title?: string | null;
-  description?: string | null;
-  link?: string | null;
-  image_url?: string | null;
-  source_id?: string | null;
+type RedditPost = {
+  title: string;
+  description: string;
+  link: string;
+  imageUrl?: string;
+  source?: string;
 };
 
-type NewsDataResponse = {
-  results?: NewsDataArticle[];
+type GoodNewsResponse = {
+  articles?: RedditPost[];
 };
 
 type GoodNewsState =
@@ -26,17 +26,15 @@ type GoodNewsState =
   | { status: "success"; article: GoodNewsArticle; message: null }
   | { status: "fallback"; article: GoodNewsArticle; message: string };
 
-const cacheKey = "personal-home-good-news-v1";
-const cacheTtl = 1000 * 60 * 60 * 6;
-const newsDataEndpoint = "https://newsdata.io/api/1/news";
-const keywords = "khám phá OR thành tựu OR truyền cảm hứng OR cứu trợ OR vui vẻ OR inspiring OR wholesome OR innovation";
+const cacheKey = "personal-home-good-news-reddit-v1";
+const cacheTtl = 1000 * 60 * 30;
+const goodNewsEndpoint = `${import.meta.env.BASE_URL}api/good-news`;
 
 const fallbackArticle: GoodNewsArticle = {
-  title: "Good Quote",
-  description:
-    "Because you are alive, everything is possible. Hôm nay vẫn có một điều nhỏ đáng để mỉm cười.",
-  link: "https://www.goodreads.com/author/quotes/9074.Thich_Nhat_Hanh",
-  source: "Thích Nhất Hạnh",
+  title: "Hôm nay là một ngày tuyệt vời để bắt đầu những điều mới mẻ! ✨",
+  description: "Một lời nhắc nhỏ: vẫn luôn có điều tốt lành đang xảy ra quanh mình.",
+  link: "https://www.reddit.com/r/UpliftingNews/",
+  source: "Good Vibes",
 };
 
 function pickRandomArticle(articles: GoodNewsArticle[]) {
@@ -44,18 +42,16 @@ function pickRandomArticle(articles: GoodNewsArticle[]) {
   return topFive[Math.floor(Math.random() * topFive.length)];
 }
 
-function normalizeArticles(results: NewsDataArticle[] = []) {
-  return results
-    .filter((article) => article.title && article.link)
+function normalizeArticles(posts: RedditPost[] = []) {
+  return posts
+    .filter((post) => post.title && post.link)
     .slice(0, 5)
-    .map((article) => ({
-      title: article.title ?? "",
-      description:
-        article.description?.trim() ||
-        "Một mẩu tin nhẹ nhàng để nhắc mình rằng thế giới vẫn có những điều đang tốt lên.",
-      link: article.link ?? "",
-      imageUrl: article.image_url ?? undefined,
-      source: article.source_id ?? "Good News",
+    .map((post) => ({
+      title: post.title,
+      description: post.description,
+      link: post.link,
+      imageUrl: post.imageUrl,
+      source: post.source,
     }));
 }
 
@@ -96,8 +92,6 @@ export default function GoodNewsSection() {
     message: null,
   });
 
-  const apiKey = useMemo(() => import.meta.env.VITE_NEWSDATA_API_KEY as string | undefined, []);
-
   useEffect(() => {
     let cancelled = false;
 
@@ -115,29 +109,17 @@ export default function GoodNewsSection() {
           return;
         }
 
-        if (!apiKey) {
-          throw new Error("Missing VITE_NEWSDATA_API_KEY");
-        }
-
-        const params = new URLSearchParams({
-          apikey: apiKey,
-          language: "vi",
-          category: "entertainment,technology,science,health",
-          sentiment: "positive",
-          q: keywords,
-        });
-
-        const response = await fetch(`${newsDataEndpoint}?${params.toString()}`);
+        const response = await fetch(goodNewsEndpoint);
 
         if (!response.ok) {
-          throw new Error(`News request failed: ${response.status}`);
+          throw new Error(`Good news request failed: ${response.status}`);
         }
 
-        const data = (await response.json()) as NewsDataResponse;
-        const articles = normalizeArticles(data.results);
+        const data = (await response.json()) as GoodNewsResponse;
+        const articles = normalizeArticles(data.articles);
 
         if (!articles.length) {
-          throw new Error("No positive news articles found");
+          throw new Error("No uplifting news posts found");
         }
 
         writeCachedArticles(articles);
@@ -151,7 +133,7 @@ export default function GoodNewsSection() {
           setState({
             status: "fallback",
             article: fallbackArticle,
-            message: "Chưa lấy được tin tốt mới, nên mình để lại một câu nhẹ nhàng ở đây.",
+            message: "Reddit hơi thất thường hôm nay, nên mình để lại một lời nhắc tốt lành ở đây.",
           });
         }
       }
@@ -162,7 +144,7 @@ export default function GoodNewsSection() {
     return () => {
       cancelled = true;
     };
-  }, [apiKey]);
+  }, []);
 
   return (
     <section className="fade-in-up delay-700 rounded-[2rem] border border-border/70 bg-gradient-to-br from-card/86 via-background/64 to-[hsl(82_28%_84%_/_0.52)] p-5 shadow-[0_26px_90px_rgba(83,70,48,0.14)] backdrop-blur-md sm:p-6">
@@ -200,7 +182,9 @@ export default function GoodNewsSection() {
             />
           ) : (
             <div className="flex h-40 w-full items-center justify-center rounded-[1.5rem] border border-border/60 bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.72),rgba(214,203,174,0.62)_42%,rgba(152,139,101,0.28)_100%)] text-primary">
-              <Newspaper className="h-10 w-10" strokeWidth={1.2} />
+              <span className="font-serif text-5xl" aria-hidden="true">
+                ✨
+              </span>
             </div>
           )}
           <div className="flex flex-col justify-center">
