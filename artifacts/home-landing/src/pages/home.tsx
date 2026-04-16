@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ArrowUpRight, Youtube, MonitorPlay, Film, BookOpen, Music, Edit3 } from "lucide-react";
 import GoodNewsSection from "@/components/good-news-section";
 import zenBackground from "@assets/image_1775884017478.png";
+import GratitudePanel from "@/components/gratitude-panel";
+import GratitudeHistory from "@/components/gratitude-history";
 
 interface LinkItem {
   title: string;
@@ -172,6 +174,7 @@ export default function Home() {
   const [time, setTime] = useState(new Date());
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [quoteVisible, setQuoteVisible] = useState(true);
+  const [showGratitudeHistory, setShowGratitudeHistory] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -234,6 +237,14 @@ export default function Home() {
             <p className="mt-3 font-sans text-xs tracking-[0.22em] uppercase text-muted-foreground/75">
               Thích Nhất Hạnh
             </p>
+          </div>
+          <div className="mt-2">
+            <button
+              onClick={() => setShowGratitudeHistory(true)}
+              className="text-sm text-primary underline"
+            >
+              Xem lại biết ơn
+            </button>
           </div>
         </header>
 
@@ -310,6 +321,8 @@ export default function Home() {
           </p>
         </footer>
       </main>
+      <GratitudePanel />
+      <GratitudeHistory open={showGratitudeHistory} onClose={() => setShowGratitudeHistory(false)} />
     </div>
   );
 }
